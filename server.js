@@ -9,6 +9,10 @@ apiroutes(app)
 var mongoose = require("mongoose")
 app.use(express.static("public"))
 mongoose.connect(process.env.MONGODB||"mongodb://localhost/googlebooks")
+
+if(process.env.NODE_ENV ==="production"){
+    app.use(express.static("client/build"))
+}
 app.listen(PORT,function(){
     console.log("app is listening http://localhost:"+PORT)
 })
